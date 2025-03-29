@@ -1,3 +1,2 @@
-"use strict";
 console.log('Olá mundo!');
-let num = 0;
+var num = 0;
