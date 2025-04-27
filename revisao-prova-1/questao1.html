@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 01</title>
+    <style>
+        .cabecalho {
+            background-image: url(udesc.jpg);
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <!-- Utilizei este elemento semântico para identificar um cabeçalho da página -->
+    <div class="cabecalho">
+        <h1>Bem-vindo ao Meu Site</h1>
+    </div>
+
+
+    <!-- Utilizei este elemento pois ele indica um menu de navegação na página -->
+    <nav style="border: 1px solid black;">
+        <a href="#home">Home</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#contato">Contato</a>
+    </nav>
+
+    <!-- Utilizei o elemento p pois ele representa um parágrafo -->
+    <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rerum cupiditate eaque voluptatibus animi earum sed suscipit deleniti quidem et ducimus fugit, illum minima doloribus repellendus assumenda alias tenetur! Pariatur, esse.
+    </p>
+    <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rerum cupiditate eaque voluptatibus animi earum sed suscipit deleniti quidem et ducimus fugit, illum minima doloribus repellendus assumenda alias tenetur! Pariatur, esse.
+    </p>
+
+    <!-- Utilizei o elemento ol pois ele representa uma lista orenada (ordered list) -->
+    <ol>
+        <li>Item 01</li>
+        <li>Item 02</li>
+        <li>Item 03</li>
+        <li>Item 04</li>
+        <li>Item 05</li>
+    </ol>
+
+    <!-- Para os formulários utilizei o elemento form -->
+    <h3>Contato</h3>
+    <form action="">
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" required>
+        <label for="email">E-mail:</label>
+        <input type="text" name="email" required>
+        <label for="mensagem">Mensagem:</label>
+        <input type="text" name="mensagem" required>
+    </form>
+
+    <h3>Registro de usuário</h3>
+    <form id="registroUsuario" onsubmit="return validaRegistroUsuario()">
+        <label for="nome">Nome do usuário:</label>
+        <input type="text" name="nome" id="nome" required>
+
+        <!-- Utilizei inputs do tipo password para mascarar a senha -->
+        <label for="senha">Senha:</label>
+        <input type="password" name="senha" id="senha" required>
+        <label for="confirma-senha">Confirme sua senha:</label>
+        <input type="password" name="confirma-senha" id="confirma-senha" required>
+        <label for="email">E-mail:</label>
+        <input type="text" name="email" id="email" required>
+
+        <!-- Utilizei um select para gerar uma lista de opções selecionáveis -->
+        <label for="pais">País</label>
+        <select name="pais" id="pais" id="" required>
+            <option value=""></option>
+            <option value="1">Brasil</option>
+            <option value="2">Inglaterra</option>
+            <option value="3">Estados Unidos</option>
+            <option value="4">Argentina</option>
+        </select>
+
+        <!-- Utilizei um input do tipo submit para criar o botão de enviar do formulário -->
+        <input type="submit">
+    </form>
+</body>
+
+<script>
+    function validaRegistroUsuario() {
+        debugger;
+        let nome = document.getElementById("nome").value.trim();
+        if (nome === "" || nome.length < 3) {
+            alert('Nome inválido');
+            return false;
+        }
+
+        let senha = document.getElementById("senha").value.trim();
+        if (senha === "" || senha.length < 8) {
+            alert('Senha incompleta');
+            return false;
+        }
+
+        let confirmaSenha = document.getElementById("confirma-senha").value.trim();
+        if (confirmaSenha !== senha) {
+            alert('As senhas são diferentes');
+            return false;
+        }
+
+        let email = document.getElementById("email").value.trim();
+        const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+        if (!emailRegex.test(email)) {
+            alert('O e-mail é inválido');
+            return false;
+        }
+
+        return true;
+    }
+</script>
+
+</html>
