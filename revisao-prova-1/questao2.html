@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 2</title>
+
+    <style>
+        .menu_superior {
+            height: 60px;
+            background-color: blue;
+            display: flex;
+            justify-content: right;
+            gap: 10px;
+        }
+
+        .menu_lateral {
+            width: 250px;
+            background-color: grey;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu_lateral a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .content{
+            display: flex;
+        }
+
+    </style>
+
+</head>
+<body>
+    <header>
+        <nav class="menu_superior">
+            <a href="">Home</a>
+            <a href="">Página 1</a>
+            <a href="">Página 2</a>
+        </nav>
+    </header>
+
+    <div class="content">
+        <nav class="menu_lateral">
+            <a href="">Home</a>
+            <a href="">Página 1</a>
+            <a href="">Página 2</a>
+        </nav>
+
+        <main>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab pariatur error ipsa. Aliquid similique voluptatum rem magnam iste mollitia, magni esse neque nihil, omnis voluptatem tempora quaerat at repudiandae exercitationem?</p>
+            <button id="btnResultados">Resultados</button>
+            <button id="btnEmail">E-mail</button>
+        </main>
+    </div>
+
+</body>
+
+<script>
+    const emails = ['gitiranalucas@gmail.com', 'teste@teste.com', 'ronaldinho@gaucho.com'];
+
+    document.getElementById('btnResultados').addEventListener('click', function(event) {
+        debugger;
+        console.log('Exibindo resultados...');
+    });
+
+    document.getElementById('btnEmail').addEventListener('click', function(event) {
+        debugger;
+
+        const tabel = document.createElement('table');
+        const tableBody = document.createElement('tbody');
+
+        emails.forEach(function (value, index) {
+            const row = document.createElement('tr');
+            for (let i = 0; i < 2; i++) {
+                const cell = document.createElement('td');
+                const cellText =  document.createTextNode(`${i == 0 ? index : value}`);
+
+                cell.appendChild(cellText);
+                row.appendChild(cell);
+            }
+
+            tableBody.appendChild(row);
+        });
+
+        tabel.appendChild(tableBody);
+        document.body.appendChild(tabel);
+        tabel.setAttribute('border', '2px');
+    });
+
+</script>
+
+</html>

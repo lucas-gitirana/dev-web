@@ -79,7 +79,7 @@
         </select>
 
         <!-- Utilizei um input do tipo submit para criar o botão de enviar do formulário -->
-        <input type="submit">
+        <input type="submit" id="btnEnviar">
     </form>
 </body>
 
@@ -113,6 +113,23 @@
 
         return true;
     }
+
+
+    let emails = [];
+    document.getElementById('btnEnviar').addEventListener('click', function(event) {
+        debugger;
+
+        // pega o email, imprime na console e insere em um array
+        let email = document.getElementById('email').value;
+        if (!email) {
+            console.log('E-mail não informado');
+            return;
+        }
+
+        console.log(email);
+        emails.push(email);
+    })
+
 </script>
 
 </html>
