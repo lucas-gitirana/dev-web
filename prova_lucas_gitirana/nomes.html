@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nomes</title>
+
+    <style>
+        .btn {
+            background-color: #007bff;
+            color: #ffff;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 5px;
+        }
+    </style>
+
+</head>
+<body>
+    <label for="nome">Texto:</label>
+    <input type="text" name="texto" id="texto">
+    <button id="btnEnviar" class="btn">Enviar</button>
+
+    <p id="paragrafo"></p>
+
+</body>
+
+<script>
+    document.getElementById('btnEnviar').addEventListener('click', function () {
+        debugger;
+        const p = document.getElementById('paragrafo');
+        p.innerText = document.getElementById('texto').value;
+    })
+</script>
+
+</html>
