@@ -1,9 +1,39 @@
+import axios from "axios";
+import { useEffect, useState } from "react"
+import { FaTrashAlt } from "react-icons/fa";
+
+const clienteApi = axios.create(
+    {
+        baseURL: 'http://localhost:8080'
+    }
+)
+
+export const excluirTarefasApi = (username, idTarefa) =>
+    clienteApi.delete(`/users/${username}/tarefas/${idTarefa}`);
+
+export const obterTarefasApi = (username) =>
+    clienteApi.get(`/users/${username}/tarefas`);
+
 export default function ListaTarefas() {
-    const tarefas = [
-        {id: 1, descricao: 'Aprender React', concluido: false},
-        {id: 1, descricao: 'Aprender Rest APIs', concluido: false},
-        {id: 1, descricao: 'Desenvolver uma aplicação', concluido: false},
-    ]
+    const [tarefas, setTarefas] = useState([]);
+
+    useEffect(() => atualizarTarefas(), []);
+    function atualizarTarefas() {
+        obterTarefasApi('admin')
+            .then(resposta => {
+                console.log(resposta)
+                setTarefas(resposta.data)
+            })
+            .catch(erro => console.log(erro));
+    }
+
+    function excluirTarefa(id) {
+        excluirTarefasApi('admin', id)
+            .then(resposta => {
+                atualizarTarefas()
+            })
+            .catch(erro => console.log(erro))
+    }
 
     return (
         <div className="container">
@@ -21,11 +51,14 @@ export default function ListaTarefas() {
                         {
                             tarefas.map(
                                 tarefa =>
-                                <tr key={tarefa.id}>
-                                    <td>{tarefa.id}</td>
-                                    <td>{tarefa.descricao}</td>
-                                    <td>{tarefa.concluido.toString()}</td>
-                                </tr>
+                                    <tr key={tarefa.id}>
+                                        <td>{tarefa.id}</td>
+                                        <td>{tarefa.descricao}</td>
+                                        <td>{tarefa.concluido.toString()}</td>
+                                        <td><button className="btn btn-danger" onClick={
+                                            () => excluirTarefa(tarefa.id)
+                                        }><FaTrashAlt /></button></td>
+                                    </tr>
                             )
                         }
                     </tbody>
